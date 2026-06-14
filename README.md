@@ -1,21 +1,29 @@
-# wiki-sparql-sandbox
+# wiki-yasgui-template
 
-[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge)](https://github.com/wazootech/wiki-sparql-sandbox/generate)
+[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge)](https://github.com/wazootech/wiki-yasgui-template/generate)
 
 Explore [Wiki CLI](https://github.com/wazootech/wiki) vault RDF with [YASGUI](https://yasgui.org/). This template ships a minimal typed sample vault, a pre-exported Turtle graph for static hosting, and GitHub Actions to refresh the export and deploy a browser demo.
+
+Ecosystem registry: [Wiki CLI templates](https://github.com/wazootech/wiki/blob/main/docs/wiki/Wiki_CLI.md#ecosystem-templates).
 
 ## Quick start
 
 ```bash
-git clone https://github.com/wazootech/wiki-sparql-sandbox.git
-cd wiki-sparql-sandbox
-pip install wazootech-wiki  # or: pip install git+https://github.com/wazootech/wiki.git@main
+git clone https://github.com/wazootech/wiki-yasgui-template.git
+cd wiki-yasgui-template
+pip install wazootech-wiki
 bash scripts/export-graph.sh
 ```
 
-Open `index.html` locally or use the [GitHub Pages demo](https://wazootech.github.io/wiki-sparql-sandbox/) after enabling Pages on this repo.
+Open `index.html` locally or use the [GitHub Pages demo](https://wazootech.github.io/wiki-yasgui-template/) after enabling Pages on this repo.
 
-## Two wiring modes
+## Three wiring modes
+
+| Mode | When | Steps |
+| ---- | ---- | ----- |
+| **Live dev** | Local exploration with full inferred graph | `wiki serve -c sample/wiki.yaml` with `sparql_service.enabled: true` → `/api/sparql` |
+| **Static export** | GitHub Pages, no backend | `wiki export` Turtle/TriG → `data/vault.ttl`; YASGUI loads the file URL |
+| **Persistent backend** | Production SPARQL over a loaded graph | Export vault RDF, load into [OpenLink Virtuoso](https://virtuoso.openlinksw.com/) (see below) |
 
 ### 1. Static (Pages-friendly)
 
@@ -69,6 +77,32 @@ Example `curl` against the live endpoint:
 curl "http://127.0.0.1:8080/api/sparql?query=ASK%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D" \
   -H "Accept: application/sparql-results+json"
 ```
+
+### 3. Persistent backend (optional Virtuoso)
+
+For a durable SPARQL endpoint (not `wiki serve`), export the vault graph and load it into Virtuoso. There is no separate `wiki-virtuoso-template` — this repo covers all three modes ([#81](https://github.com/wazootech/wiki/issues/81)).
+
+1. Export Turtle from your vault:
+
+```bash
+wiki -c sample/wiki.yaml export -f turtle -o data/vault.ttl
+# or: bash scripts/export-graph.sh
+```
+
+2. Load into Virtuoso (example — adjust paths and DBA credentials for your install):
+
+```bash
+# Bulk load from Turtle (see Virtuoso bulk loader / ISQL docs)
+isql 1111 dba <password> exec="DB.DBA.TTLP_MT('file://path/to/vault.ttl', '', 'http://example.org/graph/wiki', 1)"
+```
+
+3. Point YASGUI at your Virtuoso SPARQL endpoint:
+
+```
+index.html?mode=live&endpoint=http://localhost:8890/sparql
+```
+
+References: [Virtuoso RDF load](https://docs.openlinksw.com/virtuoso/), [Wiki Subcommand export](https://github.com/wazootech/wiki/blob/main/docs/wiki/Wiki_Subcommand_export.md).
 
 ## URL parameters (`index.html`)
 

@@ -1,4 +1,4 @@
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
+﻿@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <https://schema.org/> .
@@ -157,8 +157,8 @@ schema:givenName owl:sameAs schema:givenName .
 
 schema:headline owl:sameAs schema:headline .
 
-<https://wazootech.github.io/wiki-sparql-sandbox/sample/wiki/Alice_Chen> a schema:Person ;
-    owl:sameAs <https://wazootech.github.io/wiki-sparql-sandbox/sample/wiki/Alice_Chen> ;
+<https://wazootech.github.io/wiki-yasgui-template/sample/wiki/Alice_Chen> a schema:Person ;
+    owl:sameAs <https://wazootech.github.io/wiki-yasgui-template/sample/wiki/Alice_Chen> ;
     schema:articleBody """# Alice Chen
 
 Alice maintains the sandbox sample vault and typed frontmatter examples.
@@ -171,8 +171,8 @@ Alice maintains the sandbox sample vault and typed frontmatter examples.
     schema:givenName "Alice" ;
     schema:headline "Alice Chen" .
 
-<https://wazootech.github.io/wiki-sparql-sandbox/sample/wiki/Bob_Martinez> a schema:Person ;
-    owl:sameAs <https://wazootech.github.io/wiki-sparql-sandbox/sample/wiki/Bob_Martinez> ;
+<https://wazootech.github.io/wiki-yasgui-template/sample/wiki/Bob_Martinez> a schema:Person ;
+    owl:sameAs <https://wazootech.github.io/wiki-yasgui-template/sample/wiki/Bob_Martinez> ;
     schema:articleBody """# Bob Martinez
 
 Bob co-authored the demo queries bundled with this template.
@@ -186,8 +186,8 @@ Bob co-authored the demo queries bundled with this template.
     schema:givenName "Bob" ;
     schema:headline "Bob Martinez" .
 
-<https://wazootech.github.io/wiki-sparql-sandbox/sample/wiki/SPARQL_Demo> a schema:TechArticle ;
-    owl:sameAs <https://wazootech.github.io/wiki-sparql-sandbox/sample/wiki/SPARQL_Demo> ;
+<https://wazootech.github.io/wiki-yasgui-template/sample/wiki/SPARQL_Demo> a schema:TechArticle ;
+    owl:sameAs <https://wazootech.github.io/wiki-yasgui-template/sample/wiki/SPARQL_Demo> ;
     schema:articleBody """# SPARQL demo
 
 Use this page as a typed `schema:TechArticle` target in filter queries.
@@ -220,7 +220,7 @@ ASK {
 
 - [Alice_Chen](Alice_Chen.md)
 - [Bob_Martinez](Bob_Martinez.md)""" ;
-    schema:description "Starter queries and wiring notes for the wiki-sparql-sandbox template." ;
+    schema:description "Starter queries and wiring notes for the wiki-yasgui-template." ;
     schema:headline "SPARQL demo" .
 
 schema:TechArticle owl:sameAs schema:TechArticle .
@@ -337,7 +337,7 @@ ASK {
 
 "Second sample person for multi-result SPARQL queries." owl:sameAs "Second sample person for multi-result SPARQL queries." .
 
-"Starter queries and wiring notes for the wiki-sparql-sandbox template." owl:sameAs "Starter queries and wiring notes for the wiki-sparql-sandbox template." .
+"Starter queries and wiring notes for the wiki-yasgui-template." owl:sameAs "Starter queries and wiring notes for the wiki-yasgui-template." .
 
 owl:Class owl:sameAs owl:Class .
 

@@ -1,5 +1,5 @@
-# Minimal sample vault for the SPARQL sandbox template.
-vault:
+# Sample vault for wiki-yasgui-template (export, live SPARQL, Virtuoso load).
+wiki:
   inputs:
     - wiki
   filename_pattern: "[A-Za-z0-9_()-]+\\.md"
@@ -8,18 +8,13 @@ graph:
   content_predicate: schema:articleBody
   context:
     schema: https://schema.org/
-    wiki: https://wazootech.github.io/wiki-sparql-sandbox/sample/wiki/
+    wiki: https://wazootech.github.io/wiki-yasgui-template/sample/wiki/
     rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
     xsd: http://www.w3.org/2001/XMLSchema#
 
-# Enable for live mode: wiki serve -c sample/wiki.yaml
 sparql_service:
   enabled: true
   path: /api/sparql
-
-site:
-  base_url: /wiki-sparql-sandbox
-  url_style: dir
 
 link:
   style: markdown
